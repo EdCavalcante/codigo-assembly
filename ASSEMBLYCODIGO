@@ -45,15 +45,21 @@ ler_loop:
     li $t5, 45             # sinal '-' valores da tabela ASCIIZ
     beq $t4, $t5, marcar_negativo    #é um numero negativo, vai ter que fazer um processo com ele 
 
+    #aqui acontece a conversão 48 = 0, t4 fica com o número que foi lido atualmente, ao subtrair de 48 o número de verdade sai 
+    #por exemplo (51 = 3; 51-48 = 3)
     li $t5, 48
     sub $t4, $t4, $t5
+    #conversão acontecendo
+
     mul $t2, $t2, 10
-    add $t2, $t2, $t4
+    #empurra os numeros para a esquerda isso para numeros como 123
+
+    add $t2, $t2, $t4 #coloca o digito no lugar certo
     j proximo
 
 
 proximo:
-    addi $t0, $t0, 1  #incrementa 
+    addi $t0, $t0, 1  #incrementa para ler o proximo byte seja numero ou virgula
     j ler_loop
 
 marcar_negativo:
@@ -63,7 +69,7 @@ marcar_negativo:
 guardar:
     beq $t3, 1, negativo
 salvar:
-    sw $t2, 0($t1)
+    sw $t2, 0($t1) #numeros são guardados na memoria
     addi $t1, $t1, 4
     li $t2, 0
     li $t3, 0
