@@ -47,6 +47,8 @@ ler_loop:
                                      #pela segunda vez significa que agora não le mais -2 e sim só 2, porem o t3 já foi incrementado em 1
                                      # pq o proximo processo com ele vai ser trocar o sinal
 
+
+
     #aqui acontece a conversão 48 = 0, t4 fica com o número que foi lido atualmente, ao subtrair de 48 o número de verdade sai 
     #por exemplo (51 = 3; 51-48 = 3)
     li $t5, 48
@@ -78,6 +80,8 @@ salvar:
     addi $t7, $t7, 1
     j proximo
 
+
+
 #invertendo sinal se for negativo
 # $t2 = 0 - $t2
 # $t2 = 0 - 2
@@ -86,6 +90,8 @@ negativo:
     sub $t2, $zero, $t2
     j salvar  
 #invertendo sinal se for negativo 
+
+
 
 
 fim_converter:
